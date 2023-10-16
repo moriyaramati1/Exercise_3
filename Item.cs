@@ -25,6 +25,23 @@ namespace exc3
             this.itemSpace = area;
         }
         
+        public override string ToString()
+        {
+            string PropertiesDesctiption = "Item properties: \n" +
+                " Id: {0} \n " +
+                "Item Name: {1} \n " +
+                "On Shelf Number: {2} \n " +
+                "Item Type: {3} \n "+
+                "Kshruth: {4} \n " +
+                "Expiration Date: {5} \n " +
+                "Area: {6}";
+            string PropertiesString = string.Format(PropertiesDesctiption, itemId, itemName, onShelfNumber, itemType, itemKashruth, itemExpirationDate, itemSpace);
+      
+            return PropertiesString;
+        }
+
+      
 
     }
+    
 }
