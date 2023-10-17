@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace exc3
 {
@@ -29,18 +23,52 @@ namespace exc3
         public void AddToShelf(Item item)
         {
             items.Add(item);
+            shelfSpace -= item.itemSpace;
         }
-        public void RemoveFromShelf(int itemId)
+        public Item? FindItem(int itemId)
         {
-            var itemToRemove = items.Single(item => item.itemId == itemId);
-            items.Remove(itemToRemove);
+            var foundItem = items.Find(item => item.itemId == itemId);
+            
+            return foundItem;
         }
-        public List<Item> GetItems(string kashruth,string type)
+        public bool RemoveFromShelf(int itemId)
         {
+            var itemToRemove = this.FindItem(itemId);
+            if (itemToRemove != null)
+            {
+                shelfSpace += itemToRemove.itemSpace;
+                items.Remove(itemToRemove);
+                
+                return true;
+            }
+
+            return false;
+
+        }
+        public double GetShelfSpace()
+        {
+            return this.shelfSpace;
+        }
+        public void CleanShelf()
+        {
+            this.items.RemoveAll(item => item.itemExpirationDate < DateTime.Today);
+
+        }
+        public List<Item> GetItemsToEat(string kashruth,string type)
+        {
+            this.CleanShelf();
             var matchItems = items.FindAll(item => item.itemKashruth == kashruth && item.itemType == type);
-            Console.WriteLine(matchItems);
+            
             return matchItems;
         }
+
+        public List<Item> SortItemsByDate()
+        {
+            List < Item > sortedItems = this.items.OrderBy(item => item.itemExpirationDate).ToList();
+            
+            return sortedItems;
+        }
+
         public override string ToString()
         {
             string PropertiesDesctiption = "Shelf properties: \n" +
