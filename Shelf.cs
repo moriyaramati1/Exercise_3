@@ -23,11 +23,11 @@ namespace exc3
         public void AddToShelf(Item item)
         {
             items.Add(item);
-            shelfSpace -= item.itemSpace;
+            shelfSpace -= item.space;
         }
         public Item? FindItem(int itemId)
         {
-            var foundItem = items.Find(item => item.itemId == itemId);
+            var foundItem = items.Find(item => item.id == itemId);
             
             return foundItem;
         }
@@ -36,7 +36,7 @@ namespace exc3
             var itemToRemove = this.FindItem(itemId);
             if (itemToRemove != null)
             {
-                shelfSpace += itemToRemove.itemSpace;
+                shelfSpace += itemToRemove.space;
                 items.Remove(itemToRemove);
                 
                 return true;
@@ -51,20 +51,20 @@ namespace exc3
         }
         public void CleanShelf()
         {
-            this.items.RemoveAll(item => item.itemExpirationDate < DateTime.Today);
+            this.items.RemoveAll(item => item.expirationDate < DateTime.Today);
 
         }
         public List<Item> GetItemsToEat(string kashruth,string type)
         {
             this.CleanShelf();
-            var matchItems = items.FindAll(item => item.itemKashruth == kashruth && item.itemType == type);
+            var matchItems = items.FindAll(item => item.kashruth == kashruth && item.type == type);
             
             return matchItems;
         }
 
         public List<Item> SortItemsByDate()
         {
-            List < Item > sortedItems = this.items.OrderBy(item => item.itemExpirationDate).ToList();
+            List < Item > sortedItems = this.items.OrderBy(item => item.expirationDate).ToList();
             
             return sortedItems;
         }
