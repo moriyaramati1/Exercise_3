@@ -8,22 +8,22 @@ namespace exc3
         private static int ID = 0;
         public int shelfId { get; private set; }
         public int shelfNumber { get; private set; }
-        public double shelfSpace { get; private set; }
+        public double availableSpace { get; private set; }
         public List<Item> items { get; set; }
 
           
-        public Shelf(int shelfNumber, double shelfSpace, List<Item> items)
+        public Shelf(int shelfNumber, double availableSpace, List<Item> items)
         {
             this.shelfId = ID;
             ID++;
-            this.shelfSpace = shelfSpace;
+            this.availableSpace = availableSpace;
             this.items = items;
 
         }
         public void AddToShelf(Item item)
         {
             items.Add(item);
-            shelfSpace -= item.space;
+            availableSpace -= item.space;
         }
         public Item? FindItem(int itemId)
         {
@@ -36,7 +36,7 @@ namespace exc3
             var itemToRemove = this.FindItem(itemId);
             if (itemToRemove != null)
             {
-                shelfSpace += itemToRemove.space;
+                availableSpace += itemToRemove.space;
                 items.Remove(itemToRemove);
                 
                 return true;
@@ -47,7 +47,7 @@ namespace exc3
         }
         public double GetShelfSpace()
         {
-            return this.shelfSpace;
+            return this.availableSpace;
         }
         public void CleanShelf()
         {
@@ -80,7 +80,7 @@ namespace exc3
             foreach (Item item in items) {
                 ItemDescriptionn += item.ToString() + "\n \n";
             }
-            string PropertiesString = string.Format(PropertiesDesctiption, shelfId, shelfNumber, shelfSpace, ItemDescriptionn) ;
+            string PropertiesString = string.Format(PropertiesDesctiption, shelfId, shelfNumber, availableSpace, ItemDescriptionn) ;
 
             return PropertiesString;
         }
