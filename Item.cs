@@ -35,7 +35,7 @@ namespace exc3
                 "Kshruth: {4} \n " +
                 "Expiration Date: {5} \n " +
                 "Area: {6}";
-            string PropertiesString = string.Format(PropertiesDesctiption, itemId, itemName, onShelfNumber, itemType, itemKashruth, itemExpirationDate, itemSpace);
+            string PropertiesString = string.Format(PropertiesDesctiption, id, name, onShelfNumber, type, kashruth, expirationDate, space);
       
             return PropertiesString;
         }
