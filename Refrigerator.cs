@@ -39,18 +39,18 @@ namespace exc3
         {
             string PropertiesDesctiption = "Refrigerator properties: \n" +
                 " Id: {0} \n " +
-                "Refrigerator Number: {1} \n " +
-                "Model: {2} \n " +
-                "Shelves Number :{3} " +
-                "Space :{4} " +
-                "Shelves :\n \n{5} ";
+                "Model: {1} \n " +
+                "Color: {2} \n " +
+                "Shelves Number :{3} \n" +
+                "Shelves :\n \n {4} ";
             
             string ShelvesDescriptionn = "";
             foreach (Shelf shelf in shelves)
             {
                 ShelvesDescriptionn += shelf.ToString() + "\n \n";
             }
-            string PropertiesString = string.Format(PropertiesDesctiption, refrigeratorId, model, color, shelvesNumber, ShelvesDescriptionn);
+            Console.WriteLine(ShelvesDescriptionn);
+            string PropertiesString = String.Format(PropertiesDesctiption, refrigeratorId, model, color, shelvesNumber,ShelvesDescriptionn);
 
             return PropertiesString;
         }
