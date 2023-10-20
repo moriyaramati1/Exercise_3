@@ -27,7 +27,7 @@ namespace exc3
 
         public override string ToString()
         {
-           
+
             string PropertiesDesctiption = "Item properties: \n" +
                 " Id: {0} \t " +
                 "Item Name: {1} \t " +

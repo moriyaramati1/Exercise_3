@@ -51,7 +51,6 @@ namespace exc3
             {
                 AvailableSpace += shelf.availableSpace;
             }
-
             return AvailableSpace;
         }
 
