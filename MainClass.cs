@@ -38,6 +38,7 @@ namespace exc3
 
             Program program = new Program();
             List<Refrigerator> refrigerators = program.createInfrastructure();
+            Console.Clear();
             Refrigerator chosenFridge;
 
             try
